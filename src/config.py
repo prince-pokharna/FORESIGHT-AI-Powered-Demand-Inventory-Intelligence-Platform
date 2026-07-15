@@ -38,7 +38,7 @@ FORECAST_HORIZON_WEEKS  = 8      # weeks ahead to forecast
 RANDOM_SEED             = 42     # fixed for reproducibility everywhere
 SERVICE_LEVEL           = 0.90   # 90% — underpins safety stock calculation
 OVERSTOCK_WINDOW_WEEKS  = 8      # forward window for overstock risk check
-SAFETY_STOCK_Z          = 1.65   # z-score for 90% service level
+SAFETY_STOCK_Z          = 1.28   # z-score for 90% service level
 SEASON_LENGTH_WEEKS     = 52     # one year of weekly data = one season
 BACKTEST_N_SPLITS       = 5      # rolling-origin CV folds
 
