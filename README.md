@@ -70,7 +70,7 @@ pytest tests/ -v
 
 ## Key Assumptions
 
-- **90% service level** used for safety stock calculations (z = 1.65).
+- **90% service level** used for safety stock calculations (z = 1.28).
 - **8-week forecast horizon** — matches typical NorthBay planning cadence.
 - **Inventory snapshots are weekly.** Forward-filled to daily grain in the pipeline.
 - Pre-launch sales rows excluded (date < SKU launch_date).
