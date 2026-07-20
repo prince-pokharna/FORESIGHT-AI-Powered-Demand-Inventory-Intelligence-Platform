@@ -6,7 +6,7 @@ st.write("Forecast page loaded")
 """
 app/pages/forecast_page.py
 --------------------------
-Page 2 — Per-SKU Demand Forecast.
+Page 1 — Per-SKU Demand Forecast.
 
 Shows the LightGBM 8-week forecast for any selected SKU, alongside:
   - 12 weeks of actual historical demand

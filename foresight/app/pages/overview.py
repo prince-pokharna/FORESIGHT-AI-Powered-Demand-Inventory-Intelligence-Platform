@@ -6,7 +6,7 @@ st.write("Forecast page loaded")
 """
 app/pages/overview.py
 ---------------------
-Page 1 — Inventory Intelligence Overview.
+Page 2 — Inventory Intelligence Overview.
 
 This is the first page the Ops team sees.
 It must immediately answer: "What do I act on today?"
