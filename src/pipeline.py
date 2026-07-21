@@ -1,18 +1,3 @@
-"""
-src/pipeline.py
----------------
-Deliverable D1 — Reproducible Data Pipeline.
-
-Reads four raw CSV extracts, validates, cleans, joins them into one
-analysis-ready panel, and saves it as a Parquet file.
-
-Run with:
-    python -m src.pipeline
-
-Every cleaning step logs the row count before and after so the output log
-becomes the audit trail for the D2 data-quality memo.
-"""
-
 import logging
 import sys
 from pathlib import Path
