@@ -1,8 +1,8 @@
 # FORESIGHT — Executive Readout
 **NorthBay Living · Demand & Inventory Intelligence**
 **Prepared for:** Head of Operations, Finance Lead
-**Prepared by:** FORESIGHT Data Science Team (Zidio Internship Cohort)
-**Date:** [Date]
+**Prepared by:** FORESIGHT Data Science Team 
+**Date:** 24th July,2026
 
 ---
 
@@ -77,7 +77,7 @@ forecast and how confident the model is.
 
 ---
 
-## Recommended Actions (as of [Date])
+## Recommended Actions
 
 ### This week — Reorder
 
@@ -206,6 +206,3 @@ treated with additional caution.
 | Pipeline | Fully automated, single-command re-run |
 
 ---
-
-*Delivered by the FORESIGHT team as part of the Zidio Development Data Science Internship.*
-*Project FORESIGHT — Demand & Inventory Intelligence · Document v1.0*
