@@ -89,7 +89,6 @@ def seasonal_naive_forecast(
         )
         fallback_val = float(weekly_hist["weekly_units"].mean()) if n_hist_weeks > 0 else 0.0
 
-    # ---- Monday of the first forecast week ----------------------------------
     # as_of_date's own week-Monday + 1 week = first forecast week
     as_of_monday = as_of_date - pd.to_timedelta(as_of_date.dayofweek, unit="D")
     first_forecast_monday = as_of_monday + pd.Timedelta(weeks=1)
