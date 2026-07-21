@@ -1,12 +1,3 @@
-"""
-tests/test_risk.py
-------------------
-Unit tests for src/risk.py pure functions.
-
-All tests are self-contained — no external data files required.
-Run with:
-    pytest tests/test_risk.py -v
-"""
 
 import pytest
 import numpy as np
@@ -19,10 +10,6 @@ from src.risk import (
     compute_value_at_stake,
 )
 
-
-# ===========================================================================
-# compute_stockout_risk_score
-# ===========================================================================
 
 class TestStockoutRiskScore:
 
@@ -40,7 +27,6 @@ class TestStockoutRiskScore:
         )
 
     def test_high_stockout_when_empty(self):
-        """No stock at all, high demand → stockout risk must be 1.0."""
         score = compute_stockout_risk_score(
             on_hand=0,
             on_order=0,
@@ -53,7 +39,6 @@ class TestStockoutRiskScore:
         )
 
     def test_stockout_score_in_range(self):
-        """Score must always be a float in [0, 1]."""
         score = compute_stockout_risk_score(
             on_hand=50,
             on_order=20,
@@ -66,7 +51,6 @@ class TestStockoutRiskScore:
         )
 
     def test_stockout_score_is_float(self):
-        """Return type must be float."""
         score = compute_stockout_risk_score(
             on_hand=100,
             on_order=50,
@@ -77,7 +61,6 @@ class TestStockoutRiskScore:
         assert isinstance(score, float), f"Expected float, got {type(score)}"
 
     def test_on_order_reduces_risk(self):
-        """Adding on-order stock must reduce or maintain the risk score."""
         score_no_order = compute_stockout_risk_score(
             on_hand=20, on_order=0, lead_time_days=14,
             weekly_forecasts=[40.0] * 8, demand_std_weekly=5.0,
@@ -91,10 +74,6 @@ class TestStockoutRiskScore:
         )
 
     def test_longer_lead_time_increases_risk(self):
-        """
-        Longer lead time means more demand must be covered before restock arrives,
-        so risk should be higher (or equal) for the same on-hand stock.
-        """
         score_short = compute_stockout_risk_score(
             on_hand=50, on_order=0, lead_time_days=7,
             weekly_forecasts=[30.0] * 8, demand_std_weekly=5.0,
@@ -108,7 +87,6 @@ class TestStockoutRiskScore:
         )
 
     def test_zero_demand_no_stockout(self):
-        """Zero forecast demand → no stockout risk regardless of stock."""
         score = compute_stockout_risk_score(
             on_hand=0, on_order=0, lead_time_days=14,
             weekly_forecasts=[0.0] * 8, demand_std_weekly=0.0,
@@ -116,14 +94,9 @@ class TestStockoutRiskScore:
         assert score == 0.0
 
 
-# ===========================================================================
-# compute_overstock_risk_score
-# ===========================================================================
-
 class TestOverstockRiskScore:
 
     def test_no_overstock_when_low_stock(self):
-        """Stock well below total forecast demand → overstock risk = 0.0."""
         score = compute_overstock_risk_score(
             on_hand=10,
             on_order=0,
@@ -134,7 +107,6 @@ class TestOverstockRiskScore:
         )
 
     def test_high_overstock_when_excessive_stock(self):
-        """Massive stock vs tiny demand → overstock risk = 1.0 (capped)."""
         score = compute_overstock_risk_score(
             on_hand=10_000,
             on_order=0,
@@ -145,7 +117,6 @@ class TestOverstockRiskScore:
         )
 
     def test_overstock_score_in_range(self):
-        """Score must always be a float in [0, 1]."""
         score = compute_overstock_risk_score(
             on_hand=500,
             on_order=100,
@@ -156,7 +127,6 @@ class TestOverstockRiskScore:
         )
 
     def test_overstock_score_is_float(self):
-        """Return type must be float."""
         score = compute_overstock_risk_score(
             on_hand=200,
             on_order=50,
@@ -165,7 +135,6 @@ class TestOverstockRiskScore:
         assert isinstance(score, float), f"Expected float, got {type(score)}"
 
     def test_exact_balance_no_overstock(self):
-        """on_hand exactly equal to total forecast demand → risk = 0.0."""
         weekly_fcst = [10.0] * 8   # total = 80
         score = compute_overstock_risk_score(
             on_hand=80, on_order=0, weekly_forecasts=weekly_fcst,
@@ -175,7 +144,6 @@ class TestOverstockRiskScore:
         )
 
     def test_more_stock_higher_risk(self):
-        """Higher on-hand stock vs same demand → higher or equal overstock risk."""
         score_low = compute_overstock_risk_score(
             on_hand=100, on_order=0, weekly_forecasts=[20.0] * 8,
         )
@@ -187,14 +155,10 @@ class TestOverstockRiskScore:
         )
 
 
-# ===========================================================================
-# assign_quadrant
-# ===========================================================================
 
 class TestAssignQuadrant:
 
     def test_reorder_now_quadrant(self):
-        """High stockout, low overstock → reorder_now."""
         quadrant, action = assign_quadrant(stockout_risk=0.8, overstock_risk=0.2)
         assert quadrant == "reorder_now", (
             f"Expected 'reorder_now', got '{quadrant}'"
@@ -379,7 +343,6 @@ class TestComputeValueAtStake:
         )
 
     def test_return_type_is_float(self):
-        """Return type must be float."""
         val = compute_value_at_stake(
             quadrant="reorder_now",
             stockout_risk=0.8, overstock_risk=0.2,
