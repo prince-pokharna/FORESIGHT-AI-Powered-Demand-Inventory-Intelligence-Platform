@@ -1,5 +1,5 @@
 # Project FORESIGHT — Demand & Inventory Intelligence
-**Client:** NorthBay Living · **Built by:** Prince Pokharna, Jigyasa Arora
+**Client:** NorthBay Living · **Built by:** Prince Pokharna, Jigyasa Arora, Akash Kendre
 
 ---
 
