@@ -139,7 +139,6 @@ def render() -> None:
     )
 
     # Trace 2 — 80 % prediction interval (shaded band)
-    # Add BEFORE the forecast line so the line renders on top of the fill.
     fig.add_trace(
         go.Scatter(
             x=pd.concat(
