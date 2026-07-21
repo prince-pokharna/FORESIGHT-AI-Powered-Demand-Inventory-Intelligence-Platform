@@ -1,5 +1,5 @@
 # Project FORESIGHT — Demand & Inventory Intelligence
-**Client:** NorthBay Living · **Built by:** [Team member names]
+**Client:** NorthBay Living · **Built by:** Prince Pokharna, Jigyasa Arora
 
 ---
 
@@ -33,7 +33,7 @@ Date range: 2024-01-01 to 2025-12-30 (2 years of daily history).
 ## Setup & Run
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/prince-pokharna/FORESIGHT-AI-Powered-Demand-Inventory-Intelligence-Platform
 cd foresight
 
 python -m venv .venv
