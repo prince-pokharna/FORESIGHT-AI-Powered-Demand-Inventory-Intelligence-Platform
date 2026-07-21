@@ -1,6 +1,6 @@
 # Data Quality & EDA Insight Memo
 **Project FORESIGHT — NorthBay Living**
-**Prepared by:** Jigyasa Arora, Prince Jain, Akash Kendre
+**Prepared by:** Jigyasa Arora, Prince Pokharna, Akash Kendre
 **Date:** 24th July,2026
 
 ---
