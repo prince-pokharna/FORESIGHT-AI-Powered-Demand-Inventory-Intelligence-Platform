@@ -1,18 +1,3 @@
-"""
-src/forecast.py
----------------
-Deliverable D3 — Demand Forecast Model.
-
-Responsibilities:
-  1. Aggregate daily panel to weekly grain.
-  2. Engineer weekly lag / rolling / calendar features.
-  3. Rolling-origin backtest: LightGBM vs seasonal-naive baseline.
-  4. Generate the final 8-week forecast with 80 % prediction intervals.
-
-Run with:
-    python -m src.forecast
-"""
-
 import math
 import logging
 from pathlib import Path
