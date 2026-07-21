@@ -1,15 +1,5 @@
-"""
-tests/test_baseline.py
-----------------------
-Unit tests for src/baseline.py — seasonal_naive_forecast().
-
-The most important test is test_no_future_leakage: it verifies that the
-baseline function NEVER reads data after as_of_date, which is the
-non-negotiable requirement of this engagement (brief Section 7.1).
-
-Run with:
-    pytest tests/test_baseline.py -v
-"""
+# The important test here is test_no_future_leakage — it checks the
+# baseline never reads data past as_of_date.
 
 import numpy as np
 import pandas as pd
@@ -17,10 +7,6 @@ import pytest
 
 from src.baseline import seasonal_naive_forecast
 
-
-# ---------------------------------------------------------------------------
-# Helper
-# ---------------------------------------------------------------------------
 
 def make_panel(n_weeks: int = 60, units_per_day: float = 10.0) -> pd.DataFrame:
     """
@@ -40,10 +26,6 @@ def make_panel(n_weeks: int = 60, units_per_day: float = 10.0) -> pd.DataFrame:
         }
     )
 
-
-# ---------------------------------------------------------------------------
-# Tests
-# ---------------------------------------------------------------------------
 
 def test_no_future_leakage():
     """
