@@ -14,7 +14,7 @@ the canonical feature-column list shared across the project.
 import numpy as np
 import pandas as pd
 
-from src.config import RANDOM_SEED   # imported for consistency; not used in computation
+from src.config import RANDOM_SEED   
 
 # Season string → integer encoding  (must match src/forecast.py _SEASON_MAP)
 _SEASON_CODE: dict[str, int] = {
