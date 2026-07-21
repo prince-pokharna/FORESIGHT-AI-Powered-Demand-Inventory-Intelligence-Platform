@@ -8,13 +8,13 @@ output files exist locally:
 ```
 data/processed/panel.parquet          ← python -m src.pipeline   (Teammate 1)
 data/processed/forecasts.parquet      ← python -m src.forecast   (Teammate 2)
-data/processed/risk_scores.parquet    ← python -m src.risk       (Teammate 2)
+data/processed/risk_scores.parquet    ← python -m src.risk       (Teammate 3)
 ```
 
 The repository must be pushed to GitHub — either public, or private with the
 Zidio mentor added as a collaborator.
 
----
+
 
 ## Step 1 — Commit the Processed Parquet Files
 
@@ -35,7 +35,6 @@ git push origin main
 > on 130,000+ rows during cold start is unreliable. Committing the pre-built
 > outputs is simpler and faster.
 
----
 
 ## Step 2 — Deploy on Streamlit Community Cloud
 
@@ -52,7 +51,6 @@ git push origin main
 > Copy this URL — you need it for the README.md placeholders, the executive
 > readout, and the Zidio submission form.
 
----
 
 ## Step 3 — Smoke-Test Checklist
 
@@ -104,7 +102,6 @@ window) to simulate a new user loading the app for the first time.
 - [ ] Download CSV from Overview — opens in a spreadsheet with correct columns
 - [ ] Download Reorder Plan CSV from Risk page — correct columns, correct SKUs only
 
----
 
 ## Troubleshooting Common Deployment Failures
 
@@ -144,8 +141,6 @@ streamlit==1.32.0
 plotly==5.18.0
 pyarrow==14.0.2
 ```
-
----
 
 ## Updating the App After a Data Refresh
 
