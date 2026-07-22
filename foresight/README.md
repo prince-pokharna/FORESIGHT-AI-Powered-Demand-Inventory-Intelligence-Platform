@@ -136,3 +136,26 @@ foresight/
 | D5 | Planning dashboard | `streamlit run app/main.py` |
 | D6 | Deployed scoring service | `[live URL]?sku_id=SKU0001` |
 | D7 | Executive readout | `reports/executive_readout.md` |
+
+## 🏗️ Architecture
+
+FORESIGHT/
+├── src/
+│ ├── forecasting/
+│ │ └── ensemble_model.py # Prophet + XGBoost ensemble
+│ ├── inventory/
+│ │ └── risk_engine.py # Safety stock, ROP, EOQ, risk scoring
+│ └── data/ # ETL pipeline
+├── app/
+│ └── dashboard.py # Streamlit BI dashboard
+├── foresight/notebooks/ # EDA + model experiments
+├── tests/ # Pytest test suite
+└── reports/ # Auto-generated reports
+
+
+## ⚙️ Enhancements (v2)
+
+- **Ensemble Forecasting:** Prophet (seasonality) + XGBoost (residual correction) per SKU
+- **Risk Engine:** Z-score safety stock, Wilson EOQ, probabilistic stockout scoring
+- **Live Alert Dashboard:** Confidence band charts + critical SKU sidebar
+- **Test Coverage:** Full pytest suite for risk engine

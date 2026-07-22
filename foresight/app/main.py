@@ -12,6 +12,8 @@ to the correct page module based on the user's navigation choice.
 """
 
 import streamlit as st
+import pandas as pd
+from utils.loaders import load_risk_scores
 
 # ---------------------------------------------------------------------------
 # Page configuration — must be the very first Streamlit call
@@ -23,12 +25,42 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+def render_risk_alerts(risk_df):
+    """Sidebar panel showing critical/high risk SKUs."""
+    st.sidebar.markdown("## 🚨 Inventory Alerts")
+    critical = risk_df[risk_df["quadrant"] == "reorder_now"]   # adapt to your label
+    high = risk_df[risk_df["quadrant"] == "watch_volatile"]    # adapt if needed
+
+    if critical.empty and high.empty:
+        st.sidebar.success("✅ All SKUs within safe thresholds")
+        return
+
+    for _, row in critical.iterrows():
+        st.sidebar.error(
+            f"🔴 **{row['sku_id']}** — STOCKOUT RISK: {row['stockout_risk']*100:.1f}%\n"
+            f"Reorder {row['forecast_8w_total']:.0f} units NOW"   # or recommended_order_qty if exists
+        )
+    for _, row in high.iterrows():
+        st.sidebar.warning(
+            f"🟡 **{row['sku_id']}** — High Risk: {row['stockout_risk']*100:.1f}%\n"
+            f"ROP: {row.get('reorder_point', 'N/A')} units"
+        )
+
 # ---------------------------------------------------------------------------
 # Sidebar
 # ---------------------------------------------------------------------------
 st.sidebar.title("📦 FORESIGHT")
 st.sidebar.caption("NorthBay Living · Demand & Inventory Intelligence")
 st.sidebar.markdown("---")
+
+try:
+    risk_data = load_risk_scores()
+    if not risk_data.empty:
+        render_risk_alerts(risk_data)
+    else:
+        st.sidebar.info("No risk data loaded yet.")
+except Exception:
+    st.sidebar.warning("Could not load risk data.")
 
 page = st.sidebar.radio(
     "Navigate",

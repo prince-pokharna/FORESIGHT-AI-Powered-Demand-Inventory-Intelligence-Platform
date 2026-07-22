@@ -33,6 +33,28 @@ from utils.loaders import (
     get_sku_list,
 )
 
+def render_forecast_chart(forecast_df, sku_id: str):
+    """Renders forecast with Prophet-style confidence intervals (95%)."""
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(
+        x=forecast_df["ds"], y=forecast_df["yhat"],
+        mode="lines", name="Forecast", line=dict(color="#1f77b4", width=2)
+    ))
+    fig.add_trace(go.Scatter(
+        x=pd.concat([forecast_df["ds"], forecast_df["ds"][::-1]]),
+        y=pd.concat([forecast_df["yhat_upper"], forecast_df["yhat_lower"][::-1]]),
+        fill="toself", fillcolor="rgba(31,119,180,0.15)",
+        line=dict(color="rgba(255,255,255,0)"),
+        name="95% Confidence Band"
+    ))
+    fig.update_layout(
+        title=f"Demand Forecast — SKU: {sku_id}",
+        xaxis_title="Date", yaxis_title="Units",
+        template="plotly_dark", height=400
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
 
 def render() -> None:
     """Render the Forecast page. Called by app/main.py."""

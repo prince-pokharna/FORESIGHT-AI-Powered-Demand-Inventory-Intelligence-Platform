@@ -31,7 +31,6 @@ def render() -> None:
     st.title("🔍 Score a SKU")
     st.caption(
         "Returns the 8-week demand forecast and inventory risk for any SKU. "
-        "Also accessible via URL — append `?sku_id=SKU0042` to the app address."
     )
 
     # ------------------------------------------------------------------
