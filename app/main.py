@@ -12,7 +12,8 @@ to the correct page module based on the user's navigation choice.
 """
 
 import streamlit as st
-
+import pandas as pd
+from utils.loaders import load_risk_scores
 # ---------------------------------------------------------------------------
 # Page configuration — must be the very first Streamlit call
 # ---------------------------------------------------------------------------
@@ -47,17 +48,17 @@ st.sidebar.caption("Powered by LightGBM + Streamlit")
 # Page routing
 # ---------------------------------------------------------------------------
 if page.startswith("🏠"):
-    from app.pages import overview
+    from pages import overview
     overview.render()
 
 elif page.startswith("📈"):
-    from app.pages import forecast_page
+    from pages import forecast_page
     forecast_page.render()
 
 elif page.startswith("⚠️"):
-    from app.pages import risk_page
+    from pages import risk_page
     risk_page.render()
 
 else:
-    from app.pages import scoring_page
+    from pages import scoring_page
     scoring_page.render()
