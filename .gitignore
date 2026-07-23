@@ -1,5 +1,7 @@
 data/raw/
-data/processed/
+data/processed/*
+!data/processed/*.parquet
+!data/processed/*.csv
 .venv/
 __pycache__/
 *.pyc
