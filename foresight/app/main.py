@@ -10,6 +10,10 @@ This file contains ZERO business logic.
 Its only job is to configure the page, render the sidebar, and delegate
 to the correct page module based on the user's navigation choice.
 """
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 
 import streamlit as st
 import pandas as pd
